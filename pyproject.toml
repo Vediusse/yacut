@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "yacut"
+version = "0.1.0"
+description = ""
+authors = ["Valerii Rublev <vedius.rublev@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-dotenv = "0.19.2"
+flask = "^2.3.2"
+flask-sqlalchemy = "^3.0.4"
+flask-wtf = "^1.1.1"
+flask-migrate = "^4.0.4"
+urllib3 = "1.26.15"
+certifi = "^2023.5.7"
+
+[project]
+dependencies = [
+  "urllib3>=1.26,<3"
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
