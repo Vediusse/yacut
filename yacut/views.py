@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from flask import flash, redirect, render_template, abort
 
 from yacut import app, db
@@ -10,7 +12,6 @@ def index():
     form = LinkForm()
     if not form.validate_on_submit():
         return render_template("index.html", form=form)
-
     original = form.original_link.data
     render_date = dict(form=form, original=original)
     if form.custom_id.data:
@@ -40,7 +41,5 @@ def index():
 
 @app.route("/<string:id>", methods=["GET"])
 def redirection(id):
-    url = URLMap.query.filter_by(short=id).first()
-    if url is None:
-        abort(404)
-    return redirect(url.original), 302
+    url = URLMap.query.filter_by(short=id).first_or_404()
+    return redirect(url.original), HTTPStatus.FOUND

@@ -1,3 +1,4 @@
+from http import HTTPStatus
 from urllib.parse import urljoin
 
 from flask import jsonify, request
@@ -12,7 +13,7 @@ def get_url(short):
     url = URLMap.query.filter_by(short=short).first()
     if url is None:
         raise InvalidUrl("Указанный id не найден")
-    return jsonify({"url": url.original}), 200
+    return jsonify({"url": url.original}), HTTPStatus.OK
 
 
 @app.route("/api/id/", methods=["POST"])
@@ -37,7 +38,7 @@ def post_url():
             url=url.original,
             short_link=urljoin(request.url_root, url.short),
         )
-        return jsonify(result), 201
+        return jsonify(result), HTTPStatus.CREATED
 
     db.session.add(url)
     db.session.commit()
@@ -45,4 +46,4 @@ def post_url():
         url=url.original,
         short_link=urljoin(request.url_root, url.short),
     )
-    return jsonify(result), 201
+    return jsonify(result), HTTPStatus.CREATED

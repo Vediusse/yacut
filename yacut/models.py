@@ -36,12 +36,10 @@ class URLMap(db.Model):
         return value
 
     @validates("short")
-    def validate_shor(self, key, value):
-        regex = re.compile(r"[.,\-!?$#а-яА-ЯёЁ\s]")
+    def validate_short(self, key, value):
         message = "Указано недопустимое имя для короткой ссылки"
-        if re.findall(regex, str(value)):
+        if re.findall(app.config["REGEX"], str(value)):
             raise InvalidAPIUsage(message)
         if len(str(value)) > 16:
             raise InvalidAPIUsage(message)
-
         return value

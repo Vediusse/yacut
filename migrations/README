@@ -1,1 +1,16 @@
-Single-database configuration for Flask.
+##Создание новой репозитории migrations:
+
+```shell
+flask db init
+```
+
+##Создайте миграции с помощью команды:
+
+```shell
+ flask db migrate -m "create db"
+ ```
+ ##Чтобы применить найденные изменения к базе данных, выполните команду:
+
+ ```shell
+ flask db upgrade
+ ```
