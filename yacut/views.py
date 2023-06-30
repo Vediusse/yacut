@@ -1,6 +1,6 @@
 from http import HTTPStatus
 
-from flask import flash, redirect, render_template, abort
+from flask import flash, redirect, render_template
 
 from yacut import app, db
 from .forms import LinkForm

@@ -3,7 +3,7 @@ import re
 from flask_wtf import FlaskForm
 from sqlalchemy.orm import validates
 from wtforms import SubmitField, URLField
-from wtforms.validators import DataRequired, Length, Optional, Regexp
+from wtforms.validators import DataRequired, Length, Optional
 
 from . import app
 from .errors_handlers import InvalidAPIUsage
